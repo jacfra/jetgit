@@ -1,0 +1,27 @@
+[
+  {
+    "name": "serve",
+    "host": "localhost",
+    "port": 5432,
+    "username": "dev",
+    "password": "devpw",
+    "database": "devdb",
+    "entities": ["dist/entity/*.js"],
+    "migrations": ["dist/migration/*.js"],
+    "type": "postgres",
+    "cli": {
+      "entitiesDir": "dist/entity",
+      "migrationsDir": "dist/migration"
+    },
+    "logging": ["error"],
+    "synchronize": true,
+    "dropSchema": true
+  },
+  {
+    "name": "test",
+    "entities": ["src/entity/*.ts"],
+    "type": "sqljs",
+    "synchronize": true,
+    "dropSchema": true
+  }
+]
