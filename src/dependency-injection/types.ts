@@ -1,5 +1,7 @@
 export const TYPES = {
-  DatabaseConnection: Symbol("DatabaseConnection"),
+  Logger: Symbol("Logger"),
+  DataSource: Symbol("DatabaseConnection"),
+  MigrationService: Symbol("MigrationService"),
   DemoSeed: Symbol("DemoSeed"),
   DemoService: Symbol("DemoService"),
 };

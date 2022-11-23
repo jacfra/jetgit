@@ -6,8 +6,14 @@ import { container } from "./dependency-injection/bind";
 import { DemoResolver } from "./resolver/DemoResolver";
 import { IDemoSeed } from "./seed/DemoSeed";
 import { TYPES } from "./dependency-injection/types";
+import { IMigrationService } from "./service/MigrationService";
 
 (async () => {
+  const migrationService = await container.getAsync<IMigrationService>(
+    TYPES.MigrationService
+  );
+  await migrationService.latest();
+
   const demoSeed = await container.getAsync<IDemoSeed>(TYPES.DemoSeed);
   await demoSeed.seed();
 

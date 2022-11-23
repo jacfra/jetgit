@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { IDatabaseConnection } from "../database/DatabaseConnection";
+import { IDataSource } from "../database/DatabaseConnection";
 import { TYPES } from "../dependency-injection/types";
 import { DemoEntity } from "../entity/DemoEntity";
 
@@ -10,10 +10,10 @@ export interface IDemoService {
 @injectable()
 export class DemoService implements IDemoService {
   constructor(
-    @inject(TYPES.DatabaseConnection)
-    private databaseConnection: IDatabaseConnection
+    @inject(TYPES.DataSource)
+    private dataSource: IDataSource
   ) {}
   async demo(): Promise<DemoEntity[]> {
-    return await this.databaseConnection.getRepository(DemoEntity).find();
+    return await this.dataSource.getRepository(DemoEntity).find();
   }
 }

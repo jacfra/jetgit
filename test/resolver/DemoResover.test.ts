@@ -28,6 +28,6 @@ describe("DemoResolver", () => {
 
     const result = results.pop();
 
-    expect(result.value).toBe(expected.value);
+    expect(result?.value).toBe(expected.value);
   });
 });

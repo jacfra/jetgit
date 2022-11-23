@@ -1,6 +1,5 @@
 import { inject, injectable } from "inversify";
-import { Resolver, Query, Mutation, Arg } from "type-graphql";
-import { IDatabaseConnection } from "../database/DatabaseConnection";
+import { Resolver, Query } from "type-graphql";
 import { TYPES } from "../dependency-injection/types";
 import { DemoEntity } from "../entity/DemoEntity";
 import { IDemoService } from "../service/DemoService";

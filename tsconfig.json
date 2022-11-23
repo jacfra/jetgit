@@ -4,12 +4,11 @@
     "noImplicitAny": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "ESNext",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
-    "lib": ["es2017", "esnext.asynciterable"],
     "types": ["node", "jest", "reflect-metadata"]
   },
   "include": ["src/**/*"],

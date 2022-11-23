@@ -1,35 +1,31 @@
 import {
-  createConnection,
   EntityTarget,
-  getConnection,
   Migration,
   MigrationInterface,
+  ObjectLiteral,
   QueryRunner,
   ReplicationMode,
   Repository,
   SelectQueryBuilder,
 } from "typeorm";
-import { Connection } from "typeorm";
+import { databaseSource } from "./DataSource";
 
-export interface IDatabaseConnection {
+export interface IDataSource {
   createQueryBuilder(queryRunner?: QueryRunner): SelectQueryBuilder<any>;
   createQueryRunner(mode?: ReplicationMode): QueryRunner;
-  getRepository<Entity>(target: EntityTarget<Entity>): Repository<Entity>;
+  getRepository<Entity extends ObjectLiteral>(
+    target: EntityTarget<Entity>
+  ): Repository<Entity>;
   runMigrations(options?: {
     transaction?: "all" | "none" | "each";
   }): Promise<Migration[]>;
   migrations: MigrationInterface[];
-  isConnected: boolean;
+  isInitialized: boolean;
   undoLastMigration(options?: {
     transaction?: "all" | "none" | "each";
   }): Promise<void>;
 }
 
-export const createOrGetDatabaseConnection = async () => {
-  const connectionName = "serve";
-  return await createConnection(connectionName).catch(() => {
-    return getConnection(connectionName);
-  });
+export const initializeDataSource = async (): Promise<IDataSource> => {
+  return await databaseSource.initialize();
 };
-
-export type DatabaseConnection = Connection;
